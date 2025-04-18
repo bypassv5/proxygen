@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProxyGen Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400&display=swap" rel="stylesheet"> <!-- Link to Fredoka font -->
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif; /* Use Fredoka font */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            height: 100vh; /* Sets the height of the body to fill the viewport */
+            position: relative; /* Position relative for the pseudo-element */
+            overflow: hidden; /* Prevents overflow */
+        }
+        .header {
+            position: relative;
+            padding: 15vh;
+            z-index: 1; /* Ensures text is above the background */
+        }
+        .title {
+            font-size: 48px;
+            margin: 0;
+            color: white; /* Change text color to white */
+        }
+        .buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .button {
+            margin-left: 10px;
+            padding: 10px 15px;
+            background-color: lime;
+            color: white; /* Change button text color to white */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        /* Pseudo-element for the background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./PU2DBUYA0quoaQjyqVQEp9TO3DOba62g/vIISKnuPEW4rvqlSnGO3QyN5qorSIjsK.png');
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the background image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            transform: scaleX(-1); /* Flips the background horizontally */
+            z-index: 0; /* Ensures the background is below the content */
+        }
+        .search-container {
+            margin: 20px auto;
+            max-width: 400px; /* Set a max width for the search container */
+            position: relative; /* Position relative for the dropdown */
+        }
+        .search-bar {
+            width: 94%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .suggestions {
+            position: absolute;
+            top: 100%; /* Position below the search bar */
+            left: 0;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 10; /* Ensures suggestions are above other content */
+            display: none; /* Initially hidden */
+        }
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0; /* Highlight on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">Home</h1>
+        <div class="buttons">
+            <a href="./index.html" class="button">Home</a>
+            <a href="./XRD3gYPvl48mqXhJ8kE5d3UCHUS1wW4L/AKvFJsekGCDUR1vkPxgF81DPT1nGBM6E.html" class="button">Apps</a>
+            <a href="./XRD3gYPvl48mqXhJ8kE5d3UCHUS1wW4L/qXJPOogDdrw0xJWq22pePcruScyPLFtQ.html" class="button">Proxies</a>
+            <a href="./XRD3gYPvl48mqXhJ8kE5d3UCHUS1wW4L/35ftY1pIZgI9Vuxd41LW4w2tJ7WnT6J1.html" class="button">Games</a>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-bar" id="searchBar" placeholder="Search...">
+            <div class="suggestions" id="suggestions"></div>
+        </div>
+    </div>
+
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const suggestions = document.getElementById('suggestions');
+    
+        const items = [
+            { name: 'Interstellar', url: './RRkc3rJ6zJf1c2PC17YkxkSdwkio5oOJ/bAUgVAKWpzbHXAEpfSzE7MvRFyF1ilQG.html'},
+            { name: 'Rammerhead', url: './RRkc3rJ6zJf1c2PC17YkxkSdwkio5oOJ/by3Kl9TAt53ywV8sXXMY6tMpy2ssBnqu.html' },
+            { name: 'Discord', url: './RRkc3rJ6zJf1c2PC17YkxkSdwkio5oOJ/7m2pe5ROvpRNyA02gATh8NupZvegjDsT.html'}
+        ];
+    
+        searchBar.addEventListener('input', function() {
+            const input = this.value.toLowerCase();
+            suggestions.innerHTML = '';
+            if (input) {
+                const filteredItems = items.filter(item => item.name.toLowerCase().includes(input));
+                filteredItems.forEach(item => {
+                    const div = document.createElement('div');
+                    div.classList.add('suggestion-item');
+                    div.textContent = item.name;
+                    div.addEventListener('click', function() {
+                        window.location.href = item.url; // Redirect to the specified URL
+                    });
+                    suggestions.appendChild(div);
+                });
+                suggestions.style.display = filteredItems.length ? 'block' : 'none';
+            } else {
+                suggestions.style.display = 'none';
+            }
+        });
+    
+        document.addEventListener('click', function(e) {
+            if (!searchBar.contains(e.target)) {
+                suggestions.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
